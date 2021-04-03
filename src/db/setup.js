@@ -1,3 +1,6 @@
+/**
+ * export functions are alphabetically ordered
+ */
 const MongoClient = require('mongodb').MongoClient
 
 let uri = null
@@ -12,6 +15,25 @@ export const getClient = () => {
 
 export const getDB = (client) => {
     return client.db(dbName)
+}
+
+export const deleteOne = async (collectionName, filter, options, pclient) => {
+    let client = null
+    try {
+        if (!pclient) {
+            client = getClient()
+            await client.connect()
+        } else {
+            client = pclient
+        }
+        const db = getDB(client)
+        const collection = db.collection(collectionName)
+        return await collection.deleteOne(filter, options)
+    } finally {
+        if (!pclient) {
+            client.close()
+        }
+    }
 }
 
 export const find = async (collectionName, filter, pclient) => {
@@ -54,6 +76,27 @@ export const findOne = async (collectionName, filter, options, pclient) => {
     }
 }
 
+
+export const insertOne = async (collectionName, doc, options, pclient) => {
+    let client = null
+    try {
+        if (!pclient) {
+            client = getClient()
+            await client.connect()
+        } else {
+            client = pclient
+        }
+        const db = getDB(client)
+        const collection = db.collection(collectionName)
+        return await collection.insertOne(doc, options)
+    } finally {
+        if (!pclient) {
+            client.close()
+        }
+    }
+}
+
+
 export const updateOne = async (collectionName, filter, update, options, pclient) => {
     let client = null
     try {
@@ -85,44 +128,6 @@ export const updateMany = async (collectionName, filter, update, options, pclien
         const db = getDB(client)
         const collection = db.collection(collectionName)
         return await collection.updateMany(filter, update, options)
-    } finally {
-        if (!pclient) {
-            client.close()
-        }
-    }
-}
-
-export const insertOne = async (collectionName, doc, options, pclient) => {
-    let client = null
-    try {
-        if (!pclient) {
-            client = getClient()
-            await client.connect()
-        } else {
-            client = pclient
-        }
-        const db = getDB(client)
-        const collection = db.collection(collectionName)
-        return await collection.insertOne(doc, options)
-    } finally {
-        if (!pclient) {
-            client.close()
-        }
-    }
-}
-
-export const deleteOne = async (collectionName, filter, options, pclient) => {
-    let client = null
-    try {
-        if (!pclient) {
-            client = getClient()
-            await client.connect()
-        } else {
-            client = pclient
-        }
-        const db = getDB(client)
-        const collection = db.collection(collectionName)
-        return await collection.deleteOne(filter, options)
     } finally {
         if (!pclient) {
             client.close()
