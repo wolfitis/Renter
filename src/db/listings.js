@@ -16,22 +16,7 @@ export const create = async (malikMakanId, city, type, address, facilities, rent
     else throw new Error('DB Error: Could Not Create')
 }
 
-export const readOne = async (filter, options, client) => {
-
-    const result = await findOne(collectionName, filter, options, client)
-    if (result) return result
-    else throw new Error('DB Error: Could Not Read Data')
-}
-
-export const readAll = async (filter, client) => {
-
-    const result = await find(collectionName, filter, client)
-    if (result) return result
-    else throw new Error('DB Error: Could Not Read')
-}
-
 export const modifyOne = async (filter, dataToModify, options, client) => {
-
     let newListing = new Listing(dataToModify)
     let { value, err } = newListing.validator()
     if (err) throw new Error(err.details[0].message)
@@ -41,21 +26,40 @@ export const modifyOne = async (filter, dataToModify, options, client) => {
     // if we forward dataToModify how can we add updatedAt here? because
     // we are adding dates here (while creating a new listing)
     // but we might reconsider and add the date in controller if that's better
-    // option
+    // option for now we are making updateVal = dataToModify
+    let updateVal = dataToModify
     const result = await updateOne(collectionName, filter, updateVal, options, client)
     if (result) return result
     else throw new Error('DB Error: Could Not Modify Record')
 }
 
-export const modifyMany = async () => {
-
+export const modifyMany = async (filter, dataToModify, options, client) => {
+    let newListing = new Listing(dataToModify)
+    let { value, err } = newListing.validator()
+    if (err) throw new Error(err.details[0].message)
+    // 
+    // same as modifyOne
+    // 
+    // option for now we are making updateVal = dataToModify
+    let updateVal = dataToModify
     const result = await updateMany(collectionName, filter, updateVal, options, client)
     if (result) return result
     else throw new Error('DB Error: Could Not Modify Records')
 }
 
-export const remove = async () => {
+export const readOne = async (filter, options, client) => {
+    const result = await findOne(collectionName, filter, options, client)
+    if (result) return result
+    else throw new Error('DB Error: Could Not Read Data')
+}
 
+export const readAll = async (filter, client) => {
+    const result = await find(collectionName, filter, client)
+    if (result) return result
+    else throw new Error('DB Error: Could Not Read')
+}
+
+export const remove = async (collectionName, filter, options, client) => {
     const result = await deleteOne(collectionName, filter, options, client)
     if (result) return result
     else throw new Error('DB Error: Could Not Remove')
