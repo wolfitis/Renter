@@ -59,7 +59,7 @@ export const readAll = async (filter, client) => {
     else throw new Error('DB Error: Could Not Read')
 }
 
-export const remove = async (collectionName, filter, options, client) => {
+export const remove = async (filter, options, client) => {
     const result = await deleteOne(collectionName, filter, options, client)
     if (result) return result
     else throw new Error('DB Error: Could Not Remove')
