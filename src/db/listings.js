@@ -10,7 +10,7 @@ export const create = async (malikMakanId, city, type, address, facilities, rent
     let newListing = new Listing(malikMakanId, city, type, address, facilities, rent, details, availability, contact, imgs, listedAt)
     let { value, err } = newListing.validator()
     if (err) throw new Error(err.details[0].message)
-    console.log('--inside listing - create')
+    console.log('--inside listings - create')
     const result = await insertOne(collectionName, value, options, client)
     if (result) return result
     else throw new Error('DB Error: Could Not Create')
