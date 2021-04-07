@@ -5,9 +5,9 @@ const collectionName = 'malikMakans'
 
 export const create = async (name, contactDetails, identityDocs, options, client) => {
     var d = new Date()
-    var registredAt = d.toISOString().slice(0, 10)
+    var registeredAt = d.toISOString().slice(0, 10)
     // sample listedAt - 2021-04-03
-    let newMalikMakan = new MalikMakan(name, contactDetails, identityDocs, registredAt)
+    let newMalikMakan = new MalikMakan(name, contactDetails, identityDocs, registeredAt)
     let { value, err } = newMalikMakan.validator()
     if (err) throw new Error(err.details[0].message)
     console.log('--inside malikMakans - create')
