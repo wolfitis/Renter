@@ -8,15 +8,15 @@ module.exports = class MalikMakan {
      * 
      * @param {string} name - name of malikMakan
      * @param {object} contactDetails - [phone, email, address]
-     * @param {object} identityDocs - [photo, NIC, liscense]
-     * @param {string} registredAt - date of registration
+     * @param {object} identityDocs - [photo, NIC, license]
+     * @param {string} registeredAt - date of registration
      */
-    constructor(name, contactDetails, identityDocs, registredAt) {
+    constructor(name, contactDetails, identityDocs, registeredAt) {
         this.id = getRandomStr(config.ID_Len)
         this.name = name
         this.contactDetails = contactDetails
         this.identityDocs = identityDocs
-        this.registredAt = registredAt
+        this.registeredAt = registeredAt
         // verified malikMakan
         this.verified = false
     }
@@ -41,9 +41,9 @@ module.exports = class MalikMakan {
             identityDocs: Joi.object({
                 photo: Joi.string(),
                 NIC: Joi.string(),
-                liscense: Joi.string()
+                license: Joi.string()
             }),
-            registredAt: Joi.date(),
+            registeredAt: Joi.date(),
             verified: Joi.boolean()
         })
         return schema.validate(this)
