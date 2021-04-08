@@ -23,7 +23,7 @@ module.exports = class Kraydar {
         this.contactDetails = contactDetails
         this.identityDocs = identityDocs
         this.registeredAt = registeredAt
-        // verified malikMakan
+        // verified kraydar
         this.verified = false
     }
 
