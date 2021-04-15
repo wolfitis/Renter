@@ -1,7 +1,12 @@
+const admins = require('./admins')
+const kraydars = require('./kraydars')
 const listings = require('./listings')
+const malikMakans = require('./malikMakans')
 
 
 module.exports = {
-    listings
-    // ad more,
+    admins,
+    kraydars,
+    listings,
+    malikMakans
 }
