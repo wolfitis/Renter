@@ -4,6 +4,8 @@ const db = require('./src/db')
 
 const bodyParser = require('body-parser')
 
+const port = process.env.PORT || 3000
+
 const app = express()
 
 main = async () => {
@@ -13,7 +15,7 @@ main = async () => {
     app.get('/', (req, res) => {
         res.send('Renter is walking')
     })
-    app.listen((process.env.PORT || 3000), () => {
+    app.listen(port, () => {
         console.log('Server is running')
     })
 }
