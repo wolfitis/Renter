@@ -84,3 +84,11 @@ export const removeListing = async (req, res) => {
         })
     }
 }
+
+
+export const routes = (app) => {
+    app.routes('/listing/create').post(createListing)
+    app.routes('/listing/read').get(readListing)
+    app.routes('/listing/modify').put(modifyListing)
+    app.routes('/listing/remove:id').delete(removeListing)
+}
