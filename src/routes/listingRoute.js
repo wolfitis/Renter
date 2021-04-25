@@ -16,7 +16,6 @@ export const createListing = async (req, res) => {
         //     contact = req.body.contact,
         //     imgs = req.body.imgs
         // }
-
         let malikMakanId = req.body.malikMakanId
         let city = req.body.city
         let type = req.body.type
