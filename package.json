@@ -4,6 +4,7 @@
   "description": "A platform to find places to rent",
   "main": "index.js",
   "scripts": {
+    "start": "cross-env NODE_ENV=dev nodemon ./index.js --exec babel-node -e js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -17,11 +18,18 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "joi": "^17.4.0",
     "mongoose": "^5.12.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.7"
   }
 }
