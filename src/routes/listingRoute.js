@@ -44,9 +44,13 @@ export const readListing = async (req, res) => {
         //     param1 = req.body.param1,
         //     filter = { param1 }
         // }
-        let param1 = req.body.param1
+        // let param1 = req.body.param1
+        console.log('---------issue here in listing routes---------')
+        // #### some logic issue, it is returning only one result but we should have read all results or read one by Id
+        let param1 = req.params.id
         let filter = { param1 }
-
+        console.log('---param1')
+        console.log(param1)
         let result = await listingController.read(filter)
         return res.json({
             result
@@ -68,6 +72,7 @@ export const modifyListing = async (req, res) => {
         //     }
         // }
         let param1 = req.body.param1
+        // let param1 = req.params.id
         let filter = { param1 }
         let dataToModify = {
             field1: req.body.data
@@ -106,7 +111,9 @@ export const removeListing = async (req, res) => {
 
 export const routes = (app) => {
     app.route('/listing/create').post(createListing)
-    app.route('/listing/read').get(readListing)
+    // will only return one result
+    app.route('/listing/read/:id').get(readListing)
+
     app.route('/listing/modify').put(modifyListing)
-    app.route('/listing/remove:id').delete(removeListing)
+    app.route('/listing/remove/:id').delete(removeListing)
 }
