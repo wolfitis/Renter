@@ -45,7 +45,6 @@ export const readById = async (req, res) => {
         //     filter = { param1 }
         // }
         // let param1 = req.body.param1
-        // #### some logic issue, it is returning only one result but we should have read all results or read one by Id
         let paramId = req.params.id
 
         let result = await listingController.readById(paramId)
@@ -58,8 +57,29 @@ export const readById = async (req, res) => {
         })
     }
 }
+export const readAll = async (req, res) => {
+    try {
+        // let {
+        //     param1 = req.body.param1,
+        //     filter = { param1 }
+        // }
+        // let param1 = req.body.param1
+        let filter = {}
 
-export const modifyListing = async (req, res) => {
+        let result = await listingController.readAll(filter)
+        return res.json({
+            result
+        })
+    } catch (err) {
+        return res.json({
+            err
+        })
+    }
+}
+
+
+
+export const modifyById = async (req, res) => {
     try {
         // let {
         //     param1 = req.body.param1,
@@ -86,7 +106,7 @@ export const modifyListing = async (req, res) => {
     }
 }
 
-export const removeListing = async (req, res) => {
+export const removeById = async (req, res) => {
     try {
         // let {
         //     param1 = req.body.param1,
@@ -107,10 +127,22 @@ export const removeListing = async (req, res) => {
 
 
 export const routes = (app) => {
+
+
+    // working
     app.route('/listing/create').post(createListing)
     // will only return one result
     app.route('/listing/read/:id').get(readById)
+    app.route('/listing/read').get(readAll)
+    // delete one listing by id
+    app.route('/listing/remove/:id').delete(removeById)
 
-    app.route('/listing/modify').put(modifyListing)
-    app.route('/listing/remove/:id').delete(removeListing)
+    // need to work
+    app.route('/listing/modify/:id').put(modifyById)
+
+
+    // TODOs
+    // modifyByFilter or modifyMany to modify many listings
+    // removeByFIlter or removeMany to remove many listings
+
 }
