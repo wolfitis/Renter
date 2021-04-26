@@ -48,6 +48,8 @@ export const modifyMany = async (filter, dataToModify, options, client) => {
 }
 
 export const readOne = async (filter, options, client) => {
+    console.log('--this is filter in listings--')
+    console.log(filter)
     const result = await findOne(collectionName, filter, options, client)
     if (result) return result
     else throw new Error('DB Error: Could Not Read Data')

@@ -11,14 +11,24 @@ export const create = async (malikMakanId, city, type, address, facilities, rent
 }
 
 // read listing
-export const read = async (filter, dbOptions, dbClient) => {
+export const readById = async (id, dbOptions, dbClient) => {
     try {
-
+        let filter = {
+            id: id
+        }
         return await listings.readOne(filter, dbOptions, dbClient)
     } catch (err) {
         throw err
     }
 }
+export const readAll = async (filter, dbOptions, dbClient) => {
+    try {
+        return await listings.readAll(filter, dbOptions, dbClient)
+    } catch (err) {
+        throw err
+    }
+}
+
 
 // modify listing
 export const modify = async (filter, dataToModify, dbOptions, dbClient) => {
