@@ -33,7 +33,10 @@ export const readAll = async (filter, dbOptions, dbClient) => {
 // modify listing
 export const modify = async (filter, dataToModify, dbOptions, dbClient) => {
     try {
-        return await listings.modifyOne(filter, dataToModify, dbOptions, dbClient)
+        let updateDoc = {
+            $set: dataToModify
+        }
+        return await listings.modifyOne(filter, updateDoc, dbOptions, dbClient)
     } catch (err) {
         throw err
     }
