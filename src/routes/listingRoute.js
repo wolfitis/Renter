@@ -91,15 +91,15 @@ export const modifyById = async (req, res) => {
 
         // populate the fields with reading a listing after any modification save modified 
         let listingId = req.params.id
-        let currentListing = await listingController.readById(listingId)
+        // let currentListing = await listingController.readById(listingId)
         // let param1 = req.params.id
         let filter = { id: listingId }
         let dataToModify = req.body.data
 
         let result = await listingController.modify(filter, dataToModify)
-        return res.json({
-            result
-        })
+        return res.json(
+            result.result
+        )
     } catch (err) {
         return res.json({
             err
@@ -137,10 +137,10 @@ export const routes = (app) => {
     app.route('/listing/read').get(readAll)
     // delete one listing by id
     app.route('/listing/remove/:id').delete(removeById)
+    // wokring but might need to change the logic
+    app.route('/listing/modify/:id').put(modifyById)
 
     // need to work
-    // wokring but need to improve the logic
-    app.route('/listing/modify/:id').put(modifyById)
 
 
     // TODOs

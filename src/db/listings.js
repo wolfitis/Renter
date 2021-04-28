@@ -17,9 +17,21 @@ export const create = async (malikMakanId, city, type, address, facilities, rent
 }
 
 export const modifyOne = async (filter, dataToModify, options, client) => {
-    let newListing = new Listing(dataToModify)
-    let { value, err } = newListing.validator()
-    if (err) throw new Error(err.details[0].message)
+    // console.log('--this is data to modify in listinsg--')
+    // console.log(dataToModify.id)
+    // console.log(dataToModify.malikMakanId)
+    // console.log(dataToModify.city)
+    // console.log(dataToModify)
+    // let newListing = new Listing(dataToModify.malikMakanId, dataToModify.city, dataToModify.address, dataToModify.facilities, dataToModify.rent, dataToModify.details, dataToModify.contact, dataToModify.imgs, dataToModify.availability, dataToModify.time, dataToModify.status)
+    // console.log('--this is newListing in listinsg--')
+    // console.log(newListing)
+    // let { value, err } = newListing.validator()
+    // let { value, err } = dataToModify.validator()
+    // console.log('---this is value in listings --')
+    // console.log(value)
+    // console.log('this is error--')
+    // console.log(err)
+    // if (err) throw new Error(err.details[0].message)
     // ###########
     // see how to go about it
     // should we keep any difference between dataToModify and updateVal?
