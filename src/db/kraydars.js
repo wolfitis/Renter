@@ -17,9 +17,9 @@ export const create = async (name, gender, age, occupation, contactDetails, iden
 }
 
 export const modifyOne = async (filter, dataToModify, options, client) => {
-    let newKraydar = new Kraydar(dataToModify)
-    let { value, err } = newKraydar.validator()
-    if (err) throw new Error(err.details[0].message)
+    // let newKraydar = new Kraydar(dataToModify)
+    // let { value, err } = newKraydar.validator()
+    // if (err) throw new Error(err.details[0].message)
     // ###########
     // see how to go about it
     // should we keep any difference between dataToModify and updateVal?
